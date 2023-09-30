@@ -36,7 +36,7 @@ class PocketClient:
             + self.REDIRECT_URI
         )
         webbrowser.open(OAUTH_URL)
-        input("Press anything...")
+        input("Press a key...")
         return (
             requests.get(
                 ACCESS_URL, {"consumer_key": self.CONSUMER_KEY, "code": REQUEST_TOKEN}
@@ -65,20 +65,11 @@ class PocketClient:
                 "detailType": "simple",
             },
         )
-        return data.json()
+        return data
 
-    def GetPocketData(p, access_token, n_items=10):
-        """
-        Function to manage data retrievel in a single step
-        """
-        try:
-            data = p.makeRequest(access_token=access_token, n_items=n_items)
-        except ValueError:
-            access_token = p.makeLoginRequest()
-            print("Access Done!")
-            data = p.makeRequest(access_token=access_token, n_items=n_items)
-        return data, access_token
 
-    def __init__(self) -> None:
-        "Init function"
-        pass
+def __init__(self) -> None:
+    "Init function"
+
+
+pass
