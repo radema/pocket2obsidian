@@ -67,6 +67,18 @@ class PocketClient:
         )
         return data.json()
 
+    def GetPocketData(p, access_token, n_items=10):
+        """
+        Function to manage data retrievel in a single step
+        """
+        try:
+            data = p.makeRequest(access_token=access_token, n_items=n_items)
+        except ValueError:
+            access_token = p.makeLoginRequest()
+            print("Access Done!")
+            data = p.makeRequest(access_token=access_token, n_items=n_items)
+        return data, access_token
+
     def __init__(self) -> None:
         "Init function"
         pass
